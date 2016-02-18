@@ -12,21 +12,15 @@ class Questions:
           self.right_answer = new_right_answer
      def check_value(self,variant):
           if (self.right_answer == variant):
-              print(" ")
-              print("Правильно")
-              print(" ")
+              print('\nПравильно\n')
               return True
           else:
-          	  print(" ")
-          	  print("Неправильно")
-          	  print(" ")
-          	  
-          	  return False
-vers = float(sys.version[:3]) 
-if (vers >= 3):
-    __input = eval("input")
+              print('\nНеправильно\n')
+              return False
+if sys.version_info[0] == 2:
+    _input = raw_input
 else:
-    __input = eval("raw_input")
+    _input = input
 
 count_errors = 0
 array_questions = [["Существует ли в Python тип данных complex? (Формат ответа: да - 1, нет - 0)","1"],
@@ -41,7 +35,7 @@ while(i < len(array_questions)):
     obj = Questions()
     obj.set_question(array_questions[i][0])
     obj.set_right_answer(array_questions[i][1])
-    variant = __input(obj.question)
+    variant = _input(obj.question)
     result = obj.check_value(variant)
     if (result):
         i += 1 
@@ -51,4 +45,4 @@ while(i < len(array_questions)):
 print(" ")
 if (count_errors > 0):
     print("Количество ошибок", count_errors)
-__input('Вы ответили на все вопросы!!! Молодец!!!')
+_input('Вы ответили на все вопросы!!! Молодец!!!')
